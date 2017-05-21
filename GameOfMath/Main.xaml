@@ -135,11 +135,22 @@
                           <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="36bdb13b70327fa87f2eb0e9e9ae504a" Selector="&lt;wnd app='notepad.exe' cls='Notepad' title='Untitled - Notepad' /&gt;&lt;wnd cls='Edit' /&gt;&lt;ctrl role='editable text' /&gt;" WaitForReady="INTERACTIVE" />
                         </ui:TypeInto.Target>
                       </ui:TypeInto>
-                      <ui:SendHotkey DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" Activate="True" ClickBeforeTyping="False" DisplayName="Send hotkey" EmptyField="False" sap2010:WorkflowViewState.IdRef="SendHotkey_2" Key="enter" KeyModifiers="None" SendWindowMessages="False" SpecialKey="True">
-                        <ui:SendHotkey.Target>
-                          <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Selector="{x:Null}" TimeoutMS="{x:Null}" WaitForReady="INTERACTIVE" />
-                        </ui:SendHotkey.Target>
-                      </ui:SendHotkey>
+                      <ui:WindowScope ApplicationWindow="{x:Null}" SearchScope="{x:Null}" TimeoutMS="{x:Null}" Window="{x:Null}" DisplayName="Attach Window 'notepad.exe Untitled'" sap2010:WorkflowViewState.IdRef="WindowScope_1" InformativeScreenshot="978406c5aa1f7ceb188f7939e0234215" Selector="&lt;wnd app='notepad.exe' cls='Notepad' title='Untitled - Notepad' /&gt;">
+                        <ui:WindowScope.Body>
+                          <ActivityAction x:TypeArguments="x:Object">
+                            <ActivityAction.Argument>
+                              <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
+                            </ActivityAction.Argument>
+                            <Sequence DisplayName="Do" sap2010:WorkflowViewState.IdRef="Sequence_3">
+                              <ui:SendHotkey DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" Activate="True" ClickBeforeTyping="False" DisplayName="Send hotkey" EmptyField="False" sap2010:WorkflowViewState.IdRef="SendHotkey_2" Key="enter" KeyModifiers="None" SendWindowMessages="False" SpecialKey="True">
+                                <ui:SendHotkey.Target>
+                                  <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Selector="{x:Null}" TimeoutMS="{x:Null}" WaitForReady="INTERACTIVE" />
+                                </ui:SendHotkey.Target>
+                              </ui:SendHotkey>
+                            </Sequence>
+                          </ActivityAction>
+                        </ui:WindowScope.Body>
+                      </ui:WindowScope>
                     </Sequence>
                     <FlowStep.Next>
                       <FlowStep x:Name="__ReferenceID4" sap2010:WorkflowViewState.IdRef="FlowStep_8">
@@ -180,7 +191,7 @@
     <x:Reference>__ReferenceID5</x:Reference>
     <x:Reference>__ReferenceID6</x:Reference>
     <x:Reference>__ReferenceID7</x:Reference>
-    <sads:DebugSymbol.Symbol>dzdDOlxVc2Vyc1xBTU9SUklTT1xEb2N1bWVudHNcVWlQYXRoXEdhbWVPZk1hdGhcTWFpbi54YW1sLDwDuAEPAgEBRQlMEgIBMk8NVhYCAS5ZEV0iAgEpYBWPASACARCSARmSAfEBAgELlAFLlAFpAgEJlwEhlwHhAQIBBpoBJZ4BOwIBAko7SlYCATVHPEdIAgEzVD9UZAIBMVFAUUwCAS9ZmAFZ5AECAS1bRFtMAgErWesBWYwCAgEqZRdpLAIBJGoXbhwCAR9vF4QBHAIBFYUBF4kBJQIBEooBF44BJwIBEZIBQJIBVwIBD5IBwAGSAd8BAgEOkgFlkgFxAgEMlwFdlwFrAgEIlwG6AZcBzwECAQecAWqcAYgCAgEFnAGTApwBlgICAQSaAUqaAVACAQNnlQFn3wECAShn6gFn8AECASdlZmVwAgElaiVqNwIBIGwbbOUBAgEibyVvSQIBFnEbeCQCARt7G4IBJAIBF4cBqgGHAa8CAgEUhQGxAoUBuwICARNskAFssQECASN2TXZZAgEec05zVgIBHIABTYABcgIBGn1OfVYCARg=</sads:DebugSymbol.Symbol>
+    <sads:DebugSymbol.Symbol>d0JDOlxVc2Vyc1xBbGV4XERvY3VtZW50c1xVaVBhdGhcVUlQYXRoVHJhaW5pbmdcR2FtZU9mTWF0aFxNYWluLnhhbWwvPAPDAQ8CAQFFCUwSAgE1Tw1WFgIBMVkRXSICASxgFZoBIAIBEJ0BGZ0B8QECAQufAUufAWkCAQmiASGiAeEBAgEGpQElqQE7AgECSjtKVgIBOEc8R0gCATZUP1RkAgE0UUBRTAIBMlmYAVnkAQIBMFtEW0wCAS5Z6wFZjAICAS1lF2ksAgEnahduHAIBIm8XhAEcAgEYhQEXiQElAgEVigEXmQEoAgERnQFAnQFXAgEPnQHAAZ0B3wECAQ6dAWWdAXECAQyiAV2iAWsCAQiiAboBogHPAQIBB6cBaqcBiAICAQWnAZMCpwGWAgIBBKUBSqUBUAIBA2eVAWffAQIBK2fqAWfwAQIBKmVmZXACAShqJWo3AgEjbBts5QECASVvJW9JAgEZcRt4JAIBHnsbggEkAgEahwGqAYcBrwICAReFAbEChQG7AgIBFooBpwKKAfECAgEUkAEdlgEoAgESbJABbLEBAgEmdk12WQIBIXNOc1YCAR+AAU2AAXICAR19Tn1WAgEbkQEflQEvAgET</sads:DebugSymbol.Symbol>
   </Flowchart>
   <sap2010:WorkflowViewState.ViewStateManager>
     <sap2010:ViewStateManager>
@@ -212,8 +223,16 @@
       <sap2010:ViewStateData Id="Assign_4" sap:VirtualizedContainerService.HintSize="242,60" />
       <sap2010:ViewStateData Id="If_1" sap:VirtualizedContainerService.HintSize="509,208" />
       <sap2010:ViewStateData Id="TypeInto_1" sap:VirtualizedContainerService.HintSize="509,134" />
-      <sap2010:ViewStateData Id="SendHotkey_2" sap:VirtualizedContainerService.HintSize="509,116" />
-      <sap2010:ViewStateData Id="Sequence_2" sap:VirtualizedContainerService.HintSize="200,51">
+      <sap2010:ViewStateData Id="SendHotkey_2" sap:VirtualizedContainerService.HintSize="314,116" />
+      <sap2010:ViewStateData Id="Sequence_3" sap:VirtualizedContainerService.HintSize="336,240">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="WindowScope_1" sap:VirtualizedContainerService.HintSize="509,386" />
+      <sap2010:ViewStateData Id="Sequence_2" sap:VirtualizedContainerService.HintSize="531,1353">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -326,7 +345,7 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="Main_1" sap:VirtualizedContainerService.HintSize="784,912" />
+      <sap2010:ViewStateData Id="Main_1" sap:VirtualizedContainerService.HintSize="784,952" />
     </sap2010:ViewStateManager>
   </sap2010:WorkflowViewState.ViewStateManager>
 </Activity>

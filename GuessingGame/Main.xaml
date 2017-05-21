@@ -63,67 +63,81 @@
       <Variable x:TypeArguments="ui:GenericValue" Name="numRandom" />
     </Flowchart.Variables>
     <Flowchart.StartNode>
-      <x:Reference>__ReferenceID5</x:Reference>
+      <FlowStep x:Name="__ReferenceID1" sap2010:WorkflowViewState.IdRef="FlowStep_2">
+        <ui:MessageBox ChosenButton="{x:Null}" Buttons="Ok" Caption="Guessing Game" DisplayName="Game Instructions Msgbox" sap2010:WorkflowViewState.IdRef="MessageBox_1" Text="Try to guess the number from 0 - 1000" TopMost="True" />
+        <FlowStep.Next>
+          <FlowStep x:Name="__ReferenceID3" sap2010:WorkflowViewState.IdRef="FlowStep_4">
+            <Assign DisplayName="Assign - New Random Number" sap2010:WorkflowViewState.IdRef="Assign_1">
+              <Assign.To>
+                <OutArgument x:TypeArguments="ui:GenericValue">[numRandom]</OutArgument>
+              </Assign.To>
+              <Assign.Value>
+                <InArgument x:TypeArguments="ui:GenericValue">[new Random().Next(0,1000)]</InArgument>
+              </Assign.Value>
+            </Assign>
+            <FlowStep.Next>
+              <FlowStep x:Name="__ReferenceID0" sap2010:WorkflowViewState.IdRef="FlowStep_1">
+                <ui:InputDialog Options="{x:Null}" DisplayName="User Instruction - Guess" sap2010:WorkflowViewState.IdRef="InputDialog_1" IsPassword="False" Label="Enter your guess" Title="Guessing Game">
+                  <ui:InputDialog.Result>
+                    <OutArgument x:TypeArguments="ui:GenericValue">[numGuess]</OutArgument>
+                  </ui:InputDialog.Result>
+                </ui:InputDialog>
+                <FlowStep.Next>
+                  <FlowDecision x:Name="__ReferenceID4" Condition="[numGuess = numRandom]" sap2010:WorkflowViewState.IdRef="FlowDecision_1">
+                    <FlowDecision.True>
+                      <FlowStep x:Name="__ReferenceID5" sap2010:WorkflowViewState.IdRef="FlowStep_5">
+                        <ui:MessageBox ChosenButton="{x:Null}" Buttons="Ok" Caption="Well Done!" DisplayName="You Win Msgbox" sap2010:WorkflowViewState.IdRef="MessageBox_6" Text="You guessed correctly!" TopMost="True" />
+                      </FlowStep>
+                    </FlowDecision.True>
+                    <FlowDecision.False>
+                      <FlowStep x:Name="__ReferenceID2" sap2010:WorkflowViewState.IdRef="FlowStep_3">
+                        <Sequence DisplayName="GuessAgainSequence" sap2010:WorkflowViewState.IdRef="Sequence_1">
+                          <If Condition="[numGuess &lt; numRandom]" sap2010:WorkflowViewState.IdRef="If_1">
+                            <If.Then>
+                              <ui:MessageBox ChosenButton="{x:Null}" Buttons="Ok" Caption="Guess again" DisplayName="Message box" sap2010:WorkflowViewState.IdRef="MessageBox_2" Text="Guess higher" TopMost="True" />
+                            </If.Then>
+                            <If.Else>
+                              <ui:MessageBox ChosenButton="{x:Null}" Buttons="Ok" Caption="Guess again" DisplayName="Message box" sap2010:WorkflowViewState.IdRef="MessageBox_5" Text="Guess lower" TopMost="True" />
+                            </If.Else>
+                          </If>
+                        </Sequence>
+                        <FlowStep.Next>
+                          <x:Reference>__ReferenceID0</x:Reference>
+                        </FlowStep.Next>
+                      </FlowStep>
+                    </FlowDecision.False>
+                  </FlowDecision>
+                </FlowStep.Next>
+              </FlowStep>
+            </FlowStep.Next>
+          </FlowStep>
+        </FlowStep.Next>
+      </FlowStep>
     </Flowchart.StartNode>
-    <FlowStep x:Name="__ReferenceID0" sap2010:WorkflowViewState.IdRef="FlowStep_1">
-      <ui:InputDialog Options="{x:Null}" DisplayName="User Instruction - Guess" sap2010:WorkflowViewState.IdRef="InputDialog_1" IsPassword="False" Label="Enter your guess" Title="Guessing Game">
-        <ui:InputDialog.Result>
-          <OutArgument x:TypeArguments="ui:GenericValue">[numGuess]</OutArgument>
-        </ui:InputDialog.Result>
-      </ui:InputDialog>
-      <FlowStep.Next>
-        <FlowDecision x:Name="__ReferenceID3" Condition="[numGuess = numRandom]" sap2010:WorkflowViewState.IdRef="FlowDecision_1">
-          <FlowDecision.True>
-            <FlowStep x:Name="__ReferenceID4" sap2010:WorkflowViewState.IdRef="FlowStep_5">
-              <ui:MessageBox ChosenButton="{x:Null}" Buttons="Ok" Caption="Well Done!" DisplayName="You Win Msgbox" sap2010:WorkflowViewState.IdRef="MessageBox_6" Text="You guessed correctly!" TopMost="True" />
-            </FlowStep>
-          </FlowDecision.True>
-          <FlowDecision.False>
-            <FlowStep x:Name="__ReferenceID1" sap2010:WorkflowViewState.IdRef="FlowStep_3">
-              <Sequence DisplayName="GuessAgainSequence" sap2010:WorkflowViewState.IdRef="Sequence_1">
-                <If Condition="[numGuess &lt; numRandom]" sap2010:WorkflowViewState.IdRef="If_1">
-                  <If.Then>
-                    <ui:MessageBox ChosenButton="{x:Null}" Buttons="Ok" Caption="Guess again" DisplayName="Message box" sap2010:WorkflowViewState.IdRef="MessageBox_2" Text="Guess higher" TopMost="True" />
-                  </If.Then>
-                  <If.Else>
-                    <ui:MessageBox ChosenButton="{x:Null}" Buttons="Ok" Caption="Guess again" DisplayName="Message box" sap2010:WorkflowViewState.IdRef="MessageBox_5" Text="Guess lower" TopMost="True" />
-                  </If.Else>
-                </If>
-              </Sequence>
-              <FlowStep.Next>
-                <x:Reference>__ReferenceID0</x:Reference>
-              </FlowStep.Next>
-            </FlowStep>
-          </FlowDecision.False>
-        </FlowDecision>
-      </FlowStep.Next>
-    </FlowStep>
-    <FlowStep x:Name="__ReferenceID5" sap2010:WorkflowViewState.IdRef="FlowStep_2">
-      <ui:MessageBox ChosenButton="{x:Null}" Buttons="Ok" Caption="Guessing Game" DisplayName="Game Instructions Msgbox" sap2010:WorkflowViewState.IdRef="MessageBox_1" Text="Try to guess the number from 0 - 1000" TopMost="True" />
-      <FlowStep.Next>
-        <FlowStep x:Name="__ReferenceID2" sap2010:WorkflowViewState.IdRef="FlowStep_4">
-          <Assign DisplayName="Assign - New Random Number" sap2010:WorkflowViewState.IdRef="Assign_1">
-            <Assign.To>
-              <OutArgument x:TypeArguments="ui:GenericValue">[numRandom]</OutArgument>
-            </Assign.To>
-            <Assign.Value>
-              <InArgument x:TypeArguments="ui:GenericValue">[new Random().Next(0,1000)]</InArgument>
-            </Assign.Value>
-          </Assign>
-          <FlowStep.Next>
-            <x:Reference>__ReferenceID0</x:Reference>
-          </FlowStep.Next>
-        </FlowStep>
-      </FlowStep.Next>
-    </FlowStep>
+    <x:Reference>__ReferenceID0</x:Reference>
     <x:Reference>__ReferenceID1</x:Reference>
     <x:Reference>__ReferenceID2</x:Reference>
     <x:Reference>__ReferenceID3</x:Reference>
     <x:Reference>__ReferenceID4</x:Reference>
-    <sads:DebugSymbol.Symbol>dzVDOlxVc2Vyc1xBbGV4XERvY3VtZW50c1xVaVBhdGhcR3Vlc3NpbmdHYW1lXE1haW4ueGFtbBg8A3wPAgEBZgdm5wECARhpC3AUAgEURQdJGAIBD0s5S1ECAQ5TD1waAgEFTg9O0wECAQJmQ2ZSAgEaZq4BZtUBAgEZbj1uWAIBF2s+a0kCARVFmgFFrAECARNHOkdEAgERRbMBRcIBAgEQVBFbFgIBBk5LTlcCAQROqQFOwQECAQNUH1Q6AgEHVhVWzQECAQtZFVnMAQIBCFZRVl4CAQ1WrQFWuwECAQxZUVleAgEKWa0BWboBAgEJ</sads:DebugSymbol.Symbol>
+    <x:Reference>__ReferenceID5</x:Reference>
+    <sads:DebugSymbol.Symbol>d0RDOlxVc2Vyc1xBbGV4XERvY3VtZW50c1xVaVBhdGhcVUlQYXRoVHJhaW5pbmdcR3Vlc3NpbmdHYW1lXE1haW4ueGFtbBg8A3wPAgEBQwlD6QECARhGDU0WAgEUUBFUIgIBD1ZDVlsCAQ5eGWckAgEFWRlZ3QECAQJDRUNUAgEaQ7ABQ9cBAgEZSz9LWgIBF0hASEsCARVQpAFQtgECARNSRFJOAgERUL0BUMwBAgEQXxtmIAIBBllVWWECAQRZswFZywECAQNfKV9EAgEHYR9h1wECAQtkH2TWAQIBCGFbYWgCAQ1htwFhxQECAQxkW2RoAgEKZLcBZMQBAgEJ</sads:DebugSymbol.Symbol>
   </Flowchart>
   <sap2010:WorkflowViewState.ViewStateManager>
     <sap2010:ViewStateManager>
+      <sap2010:ViewStateData Id="MessageBox_1" sap:VirtualizedContainerService.HintSize="200,51">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Assign_1" sap:VirtualizedContainerService.HintSize="242,60">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
       <sap2010:ViewStateData Id="InputDialog_1" sap:VirtualizedContainerService.HintSize="200,51">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -169,10 +183,10 @@
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-            <av:Point x:Key="ShapeLocation">35,486.5</av:Point>
+            <av:Point x:Key="ShapeLocation">45,396.5</av:Point>
             <av:Size x:Key="ShapeSize">70,87</av:Size>
-            <av:PointCollection x:Key="TrueConnector">35,530 15.5,530 15.5,597.2 151,597.2 151,530 200,530</av:PointCollection>
-            <av:PointCollection x:Key="FalseConnector">105,530 135,530 135,440 200,440</av:PointCollection>
+            <av:PointCollection x:Key="TrueConnector">45,440 15,440 15,530 200,530</av:PointCollection>
+            <av:PointCollection x:Key="FalseConnector">115,440 200,440</av:PointCollection>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
@@ -181,21 +195,7 @@
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <av:Point x:Key="ShapeLocation">200,304.5</av:Point>
             <av:Size x:Key="ShapeSize">200,51</av:Size>
-            <av:PointCollection x:Key="ConnectorLocation">200,330 52.5,330 52.5,486.5</av:PointCollection>
-          </scg:Dictionary>
-        </sap:WorkflowViewStateService.ViewState>
-      </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="MessageBox_1" sap:VirtualizedContainerService.HintSize="200,51">
-        <sap:WorkflowViewStateService.ViewState>
-          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-          </scg:Dictionary>
-        </sap:WorkflowViewStateService.ViewState>
-      </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="Assign_1" sap:VirtualizedContainerService.HintSize="242,60">
-        <sap:WorkflowViewStateService.ViewState>
-          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <av:PointCollection x:Key="ConnectorLocation">200,330 62.5,330 62.5,396.5</av:PointCollection>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
@@ -228,7 +228,7 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="Main_1" sap:VirtualizedContainerService.HintSize="654,756" />
+      <sap2010:ViewStateData Id="Main_1" sap:VirtualizedContainerService.HintSize="654,726" />
     </sap2010:ViewStateManager>
   </sap2010:WorkflowViewState.ViewStateManager>
 </Activity>
